@@ -1,0 +1,49 @@
+
+
+
+
+body{
+    margin: 0px 0px 0px 0px;
+}
+
+#grid {
+    display:grid;
+    grid-template-columns: 60px 160px 9fr 200px;
+    
+
+}
+#text {
+    text-align: right;
+    font-size:25px;
+    font-weight: bold;
+    margin-right:20px;
+    margin-top:30px;
+}
+#SearB {
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 10px;
+    border-style:none;
+    background-color: darkgray;
+    font-size:15px;
+    margin-top:30px;
+
+}
+#grid #input {
+    font-size:15px;
+    background-color: gainsboro;
+    border-color:black;
+    color:blue;
+    margin-top:30px;
+
+}
+#grid #BackB{
+    margin-bottom:10px;
+    font-size:15px;
+    background-color: white;
+    width:60px;
+}
+
+
+
+

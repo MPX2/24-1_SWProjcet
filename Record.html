@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>시작화면</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Recordstyle.css">
+</head>
+
+<body>
+    <div id="Verticalgrid">
+        <div class="container" id = "ul"></div>
+        
+        <div class="Hgrid">
+            <div id="map" ></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c3a0d263542cb055a084b7446133650"></script>
+            <script>
+                var container = document.getElementById('map');
+                var options = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667),
+                    level: 3
+                };
+        
+                var map = new kakao.maps.Map(container, options);
+            </script>
+            <div class="container Padding" style="margin-top:20px;"></div>
+        </div>
+    </div>
+</body>
+
+</html>
