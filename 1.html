@@ -17,23 +17,38 @@
           <li>text4</li>
         </ol>
       </div>
+      <div>
+        <div id="mainText" class="hidden">
+          <input id="mainInput" type="text">
+        </div>
+        
+      </div>
+      <div>
+        <button id="mainTextButton" value="<" onclick='togglemainTextButton()'></button>
         <div id="map"></div> 
       
-      
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cdb68768ceea4dc83f5055eb904f5a"></script>
-        <script type="text/javascript">
-        
-        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-        var options = { //지도를 생성할 때 필요한 기본 옵션
-          center: new kakao.maps.LatLng(37.49455445585296, 126.95974867303006), //지도의 중심좌표.
-          level: 3 //지도의 레벨(확대, 축소 정도)
-        };
-      
-        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-    
-    </script>
+        <script type="text/javascript" src="mapInfo.js"></script>
+      </div>
     </div>
   </div>
+  <script>
+    function togglemainTextButton() {
+  
+    // 토글 할 버튼 선택 (mainTextButton)
+    const mainText = document.getElementById('mainText');
+    const grid = document.getElementById('grid');
+
+    // mainTextButton 숨기기 (display: none)
+    if(mainText.style.visibility !== 'hidden') {
+      mainText.style.visibility = 'hidden';
+      grid.style.grid-template-columns = '200px 1fr';
+    }else {
+      mainTextButton.style.display = 'visible';
+    }
+    
+  }
+  </script>
 </body>
 
 </html>
