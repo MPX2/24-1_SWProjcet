@@ -5,7 +5,7 @@ body{
 #Verticalgrid{
 
     display:grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 230px 20px 1fr;
 }
 #VgridOpenText{
     display:grid;
@@ -16,8 +16,6 @@ body{
     background-color: gray;
     border-color:black;
     height:100vh;
- 
-    margin-right:20px;
 }
 
 .Hgrid{
@@ -30,7 +28,8 @@ body{
 }
 #ul{
     height:100vh;
-    margin-right:20px;
+    position: relative;
+
 }
 
 .Vgrid #index{
@@ -76,11 +75,18 @@ body{
     border-style:none;
 
 }
-#AddButton{
+
+.SmallTitleAdd {
+    position: absolute; /*relative; 기반으로 위치 선정*/
+    bottom: 0;
+    width:100%;
+    background-color: blue;
+}
+.AddButton{
     background-image: url("./image/add.png");
     background-size: 20px 20px;
 }
-#VButton{
+.VButton{
     background-image: url("./image/v.png");
     background-size: 12px 12px;
     padding:none;
