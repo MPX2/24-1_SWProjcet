@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>시작화면</title>
-    <meta charset = "utf-8">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body class = "Start">
-    <h1 class = "title main">TriPreview에 오신 것을 환영합니다.</h1>
-    <div class = "title">
-        새로운 여행 노트 만들기
-        <button class="btn btntext" onclick ="location.href='Search.html'">+</button>
+
+<body class="Start">
+
+
+    <div class="TitleContainer">
+        <h1 class="Title Main">TriPreview에 오신 것을 <br>환영합니다.</h1>
+        <div class="Title">
+            새로운 여행 노트 만들기
+            <button class="Button ButtonText" onclick="location.href='Search.html'">+</button>
+        </div>
     </div>
+    <div class="LoginContainer">
+        <div class="LoginBox">
+            <div class="LoginGrid LoginInput">
+                <input type="text"  id = "ID"  onkeyup = "EnterKey()">
+                <input type="text" id ="Password" onkeyup = "EnterKey()">
+                <input type="button" id = "LoginButton" value="로그인" onclick = "Login()" >
+                <script>
+                    function EnterKey(){
+                        var ID = document.getElementById('ID');
+                        var PW = document.getElementById('Password');
+                        var link = './Search.html';
+                        console.log(PW.value === "");
+                        if(window.event.keyCode == 13)
+                        {
+                            if(ID.value === "" || PW.value === "" )
+                            {
+                                alert('ID 혹은 PW를 입력해주십시오');
+                            }
+                            else{
+                            location.href = link;
+                            }
+                        }
+
+                    }
+                    function Login(){
+                        var ID = document.getElementById('ID');
+                        var PW = document.getElementById('Password');
+                        var link = './Search.html';
+                        console.log(PW.value);
+                        if(ID.value === "" || PW.value === "" )
+                            {
+                                alert('ID 혹은 PW를 입력해주십시오');
+                                
+                            }
+                        else {
+                            location.href = link;
+                        }
+                        
+                    }
+                </script>
+            </div>
+            <div id = "Forget"><a href="./Record.html">로그인과 비밀번호를 잊어버리셨나요?</a></div>
+        </div>
+    </div>
+
+
 </body>
+
 </html>

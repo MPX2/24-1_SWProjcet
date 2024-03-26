@@ -3,21 +3,24 @@
     background-image: url("./Traveling\ spot.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    width:800px;
+    white-space: nowrap; /*자동 줄바꿈 방지.*/
+    min-height:100vh;
 }
 
-.title {
+.Title {
     font-weight: bold;
     text-align:center;
 
 
 }
-.main{
+.Main{
     margin-bottom: 8px;
     margin-top:40px;
     text-shadow: 0px 2px 2px;
 }
 
-.btn {
+.Button {
     background-color: gainsboro;
     border-style:none;
     border-radius: 8px;
@@ -25,12 +28,76 @@
     height:40px;
     
 }
-.btntext {
+.ButtonText {
     font-size:25px;
     box-shadow: 2px 3px 3px #666;
 }
-#grid {
+
+.TitleContainer{
+    position: absolute; /* 위치는 절대적, left, top일 경우 전체 문서에서의 위치, transform일 경우 기준이 왼쪽 상단 기준 0,0이기 때문에 중앙으로 옮겨준것.*/
+    left: 30%; 
+    top: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.LoginContainer{
+    position: absolute;
+    left: 80%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+
+.LoginBox{
+    background-color: gainsboro;
+    width:400px;
+    height:350px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 1px black;
+}
+.LoginGrid {
+
     display:grid;
-    grid-template-columns: 3fr 9fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    /*place-content: center center;  justify-content와 align-item의 합*/
 
 }
+
+.LoginInput input{
+    margin:none;
+    margin-top:20px;
+    width:370px;
+    height:35px;
+    padding:none;
+}
+.LoginInput #LoginButton {
+    width:375px;
+    border-style:none;
+    border-radius: 10px;
+    background-color: skyblue;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.LoginBox #Forget {
+    margin-top:20px;
+    text-align: center;
+
+}
+
+@media(max-width:800px) {
+    .TitleContainer{
+        position: absolute; /* 위치는 절대적, left, top일 경우 전체 문서에서의 위치, transform일 경우 기준이 왼쪽 상단 기준 0,0이기 때문에 중앙으로 옮겨준것.*/
+        left: 50%; 
+        top: 20%; 
+        transform: translate(-50%, -50%);
+    }
+    .LoginContainer{
+        position: absolute;
+        left: 50%;
+        top:80%;
+        transform: translate(-50%, -50%);
+    }
+}
+
