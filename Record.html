@@ -9,26 +9,27 @@
 
 <body>
     <div id="Verticalgrid">
-        <div class="container" id="ul">
+        <div class="container" id="ul" >
             <input type="text" value="제목" class="list" id="IndexTitle">
-            <div class="SmallTitleGrid">
-                <input type="text" value="소제목0" class="list">
+            <div class="SmallTitleGrid" id = "Grid_0" ondblclick="Deletion(this)">
+                <input type="text" value="소제목0" class="list" >
                 <script>
                     var count = 0;
-                    function addinput(elem) { //input 요소를 리스트 안에 넣어놓는 함수.
-                        if (document.getElementById('UserInput'+elem.id) == null) {// 한 소제목에서 UserInput이 없을 때만 가능
+                    function addinput(elem) { //input 요소를 생성하는 함수
+                        var ID = elem.id.substr(4);
+                        if (document.getElementById('UserInput'+ID) == null) {// 한 소제목에서 UserInput이 없을 때만 가능
                             var input = document.createElement("input"); //문서에 태그 추가 함수
                             input.setAttribute('type', 'text'); //속성 추가 함수
-                            input.setAttribute('id', 'UserInput'+elem.id);
-                            input.setAttribute('onkeyup', 'onkeypress2('+elem.id+')');
-                            document.getElementById('ul2_'+elem.id).append(input);
+                            input.setAttribute('id', 'UserInput'+ID);
+                            input.setAttribute('onkeyup', 'onkeypress2('+ID+')');
+                            document.getElementById('ul2_'+ID).append(input);
                         }
                     }
                     function onkeypress2(ID) { //엔터키가 입력될 경우, 그대로 확정하는 함수
-                        console.log();
+                        // console.log();
                         //둘 이상의 Userinput이 나올 경우, UserInput이 getElementsByClassName의 인덱스가 변동되어 오류 발생. 그래서 ID로 변동
                         var input = document.getElementById('UserInput'+ID); //맞는 클래스를 가진 첫 번째 요소를 찾는 함수
-                        console.log(input);
+                        // console.log(input);
                         if (window.event.keyCode == 13 ) {
                             addList(input.value, ID);
                             input.remove(); // 다 쓴 UserInput를 삭제한다.
@@ -43,12 +44,14 @@
                         var li = document.createElement("li");
                         li.setAttribute("onclick", "ClickList()"); //클릭 시에 글을 쓰는 공간을 만들어냄
                         li.setAttribute("oncontextmenu","DBLclick("+ID+','+InputValue+")"); //더블클릭 시에 소제목의 인덱스와 내부의 저장값을 전달.
+                        li.setAttribute("ondragstart", "event.preventdefault()");
+                
                         li.append(document.createTextNode(InputValue)); //append = 해당하는 태그의 바로 다음에 추가되는 태그 
                         document.getElementById('ul2_'+ID).appendChild(li);
                     }
                     
                     function DBLclick(ID,Value) { //더블 클릭시에 수정 가능하도록 하는 함수. 더 정확히 다시 UserInput을 불러내고, 수정가능하게 하는 것
-                        console.log('작동됨');
+                        // console.log('작동됨');
                         event.preventDefault();//기본 오른쪽 클릭 막음.
                         if (document.getElementById('UserInput'+ID) == null) {//한 소제목에서 UserInput이 없을 때만 가능
                             var input = document.createElement("input"); //문서에 태그 추가 함수
@@ -59,13 +62,21 @@
                             document.getElementById('ul2_'+ID).append(input); //지정된 소제목의 리스트에 추가하는 함수.
                         }
                     }
+
+                    function Deletion(elem){
+                        var ID = elem.id.substr(5);
+                        elem.remove();
+                        var DeleteUnorderedList = document.getElementById('ul2_'+ID);
+                        DeleteUnorderedList.remove();
+                    }
                 </script>
-                <input type="button" class="Button AddButton" id ="0" onclick="addinput(this)"> 
+                <input type="button" class="Button AddButton" id ="Add_0" onclick="addinput(this)"> 
                 <script>
                     function Hide_Apperance(elem) { //리스트를 숨기거나 나타내는 함수
 
-                        console.log(elem.id);
-                        var List = document.getElementById('ul2_'+elem.id);
+                        // console.log(elem.id);
+                        var ID = elem.id.substr(3); //시작 위치 지정해 순수한 숫자만을 추출
+                        var List = document.getElementById('ul2_'+ID);
                         //console.log(List.style.display);
                         if (List.style.display === "block" || List.style.display === "") { // ===같은 연산자 !== 다름 연산자
                             List.style.display = "none";
@@ -82,36 +93,54 @@
 
                     }
                 </script>
-                <input type="button" class="Button VButton" id = "0"onclick="Hide_Apperance(this)">
+                <input type="button" class="Button VButton" id = "HA_0" onclick="Hide_Apperance(this)">
 
             </div>
-            <ul id="ul2_0" style="display:block">
-                <li onclick="alert('오류!')">abc</li>
+            <ul id="ul2_0" style="display:block" >
+                <li onclick="alert('오류!')" ondragstart="return false">abc</li>
             </ul>
             <script>
                 function CloneSmallTitle() {
-                    console.log('작동됨');
-                    console.log(count);
+                    // console.log('작동됨');
+                    // console.log(count);
                     
                     var SmallTitlegrid = document.getElementsByClassName('SmallTitleGrid')[0];
-                    var Cloning = SmallTitlegrid.cloneNode(true); // 하위 노드까지 복제.
-                    var List = document.getElementById('ul2_'+count);
+                    var Length = document.getElementsByClassName('Button VButton').length; //복제 이전의 숫자 값 참조.
+                    var LastList = document.getElementsByTagName('ul').length;
+                    console.log(Length);
+                    var List = document.getElementsByTagName('ul')[LastList-1]; //마지막 List 객체를 탐색
+                    //삭제된 리스트가 4번일 떄 ul2_4를 복제할 경우 오류 발생 ul 태그 자체를 추적하는 방식으로 디버깅
                     var ListClone = List.cloneNode(false);
-                    var Length = document.getElementsByClassName('Button VButton').length;
-
-                    List.after(Cloning);
-                    Cloning.after(ListClone);
+                    var SmallTitlegridClone = SmallTitlegrid.cloneNode(true); 
+                    
+                    
+                    List.after(SmallTitlegridClone);
+                    SmallTitlegridClone.after(ListClone);
+                
+                    //마지막으로 만들어진 객체 탐색
                     var SmallTitle = document.getElementsByClassName('list')[Length+1]; //삭제 구현이 오류 가능성 있음.
+                    // console.log(SmallTitle);
                     var HAButton = document.getElementsByClassName('Button VButton')[Length];
                     var AddButton = document.getElementsByClassName('Button AddButton')[Length];
-                    SmallTitle.setAttribute('value','소제목'+(count+1));
+                    SmallTitlegrid = document.getElementsByClassName('SmallTitleGrid')[Length];
+                    // console.log(SmallTitlegrid);
+                    
+                     // 하위 노드까지 복제.
+                     
+
+
+
+                    //각자 맞는 id값 입력 
                     count++;
+                    SmallTitle.setAttribute('value','소제목'+(count));
                     ListClone.removeAttribute('id');
                     ListClone.setAttribute('id','ul2_'+count);
                     HAButton.removeAttribute('id');
-                    HAButton.setAttribute('id',count);
+                    HAButton.setAttribute('id','HA_'+count);
                     AddButton.removeAttribute('id');
-                    AddButton.setAttribute('id',count);
+                    AddButton.setAttribute('id','Add_'+count);
+                    SmallTitlegrid.removeAttribute('id');
+                    SmallTitlegrid.setAttribute('id','Grid_'+count);
 
                 }
             </script>
