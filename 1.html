@@ -8,14 +8,16 @@
 <body>
   <div>
     <div id="grid">
-      <div id="list">
-        <h3 id="legion">OOO여행</h3>
-        <ol>
-          <li>text1</li>
-          <li>text2</li>
-          <li>text3</li>
-          <li>text4</li>
-        </ol>
+      <div class="SmallTitleGrid">
+        <input type="text" value="제목" class="list" id="IndexTitle">
+          <input type="text" value="소제목" class="list">
+          <input type="button" class="Button" id="AddButton" onclick="addinput()">
+          <input type="button" class="Button" id="VButton" onclick="Hide_Apperance()">
+          <ul id="ul2" style="display:block">
+            <li onclick="alert('오류!')">abc</li>
+          </ul>
+      </div>
+
       </div>
       <div>
         <div id="mainText" class="hidden">
@@ -23,9 +25,9 @@
         </div>
         
       </div>
-      <div>
+      <div class="map_wrap">
         <button id="mainTextButton" value="‹" onclick='togglemainTextButton()'></button>
-        <div class="map_wrap">
+
           <div id="map"></div>
       
           <div id="menu_wrap" class="bg_white">
@@ -42,12 +44,13 @@
               <div id="pagination"></div>
           </div>
       </div>
-      
+      <div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cdb68768ceea4dc83f5055eb904f5a"></script>
         <script type="text/javascript" src="mapInfo.js"></script>
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="functions.js"></script>
   <script>
     function togglemainTextButton() {
     document.getElementById('mainInput').style.display = "none";
